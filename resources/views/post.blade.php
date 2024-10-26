@@ -21,13 +21,14 @@
     </div>
 
     <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('images/default_image.jpg') }}"
-            class="max-w-2xl mx-auto max-h-[600px] object-cover rounded-xl mb-8" alt="Post Image" />
+        class="max-w-2xl mx-auto max-h-[600px] object-cover rounded-xl mb-8" alt="Post Image" />
 
     <div class="max-w-xl mx-auto mb-12">
-        <p class="text-gray-200">{!! nl2br(e($post->__('description'))) !!}</p>
+        {{-- <p class="text-gray-200">{!! nl2br(e($post->__('description'))) !!}</p> --}}
 
-        {{-- <p class="text-gray-200">{{ $post->__('description') }}</p> --}}
-
+        <p class="text-gray-200">
+            {!! tiptap_converter()->asHTML($post->__('description')) !!}
+        </p>
         <p class="text-gray-400 text-right">
             {{ $post->created_at->locale(app()->getLocale())->translatedFormat('F jS, Y') }}</p>
     </div>

@@ -13,9 +13,12 @@ use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\BelongsToSelect;
 
+
+
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
 
 class PostResource extends Resource
 {
@@ -49,12 +52,16 @@ class PostResource extends Resource
                 ->placeholder('Выберите категорию'),
 
             // Поле для описания
-            Textarea::make('description')
+            // Textarea::make('description')
+            //     ->label('Описание')
+            //     ->placeholder('Введите описание поста')
+            //     ->helperText('Подробное описание вашего поста.')
+            //     ->required()
+            //     ->rows(4),
+            // устанавливает количество видимых строк
+            TiptapEditor::make('description')
                 ->label('Описание')
-                ->placeholder('Введите описание поста')
-                ->helperText('Подробное описание вашего поста.')
-                ->required()
-                ->rows(4), // устанавливает количество видимых строк
+                ->required(),
 
             // Поля для казахского языка
             TextInput::make('name_kk')
@@ -63,11 +70,16 @@ class PostResource extends Resource
                 ->placeholder('Введите название на казахском')
                 ->maxLength(255),
 
-            Textarea::make('description_kk')
+            // Textarea::make('description_kk')
+            //     ->label('Описание (каз)')
+            //     ->required()
+            //     ->placeholder('Введите описание на казахском')
+            //     ->rows(4),
+
+            TiptapEditor::make('description_kk')
                 ->label('Описание (каз)')
-                ->required()
-                ->placeholder('Введите описание на казахском')
-                ->rows(4),
+                ->required(),
+
 
             // Поле для загрузки изображений
             FileUpload::make('image')
@@ -75,7 +87,6 @@ class PostResource extends Resource
                 ->image()
                 ->nullable(),
         ]);
-
     }
 
     public static function table(Table $table): Table

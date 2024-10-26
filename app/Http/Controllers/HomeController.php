@@ -26,8 +26,9 @@ class HomeController extends Controller
 
     public function showCategory(Category $category)
     {
-        $posts = Post::where("category", $category->id)->get();
+        $posts = $category->posts;
+        $categories = Category::all();
 
-        return view("category", compact("category"));
+        return view("category", compact("category","posts","categories"));
     }
 }
