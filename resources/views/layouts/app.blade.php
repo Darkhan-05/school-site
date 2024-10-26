@@ -20,6 +20,8 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-900 text-white min-h-screen px-8">
+
+
     <main>
         {{ $slot }}
     </main>

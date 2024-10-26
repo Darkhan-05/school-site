@@ -6,7 +6,7 @@
                 class="text-white text-lg font-bold">{{ __('header.Кабинет профориентации') }}</a>
             <div class="hidden md:flex space-x-4 text-gray-300">
                 @foreach ($categories as $category)
-                    <a href="{{ route('category.show', $category->id) }}"
+                    <a href="#category-{{ $category->id }}"
                         class="line hover:text-white transition duration-300 relative group">{{ $category->__('name') }}</a>
                 @endforeach
             </div>
@@ -38,7 +38,7 @@
                     @foreach ($categories as $category)
                         <li @click="showBurger = false" class="mb-1 line">
                             <a class="block p-4 text-sm font-semibold text-gray-300 hover:bg-gray-600 hover:text-white rounded"
-                                href="{{ route('category.show', $category->id) }}">{{ $category->__('name') }}</a>
+                                href="#category-{{$category->id}}">{{$category->__('name')}}</a>
                         </li>
                     @endforeach
                 </ul>
