@@ -1,4 +1,4 @@
-<header x-data="{ showBurger: false }" class="px-5 py-9 lg:py-12">
+<header x-data="{ showBurger: false }" class="lg:px-5 py-9 lg:py-12">
 
     <nav class="p-4 flex md:block">
         <div class="mr-auto md:mx-auto flex justify-between items-center">
@@ -9,6 +9,17 @@
                     <a href="#category-{{ $category->id }}"
                         class="line hover:text-white transition duration-300 relative group">{{ $category->__('name') }}</a>
                 @endforeach
+                <form class="max-w-[80px] mx-auto" method="GET" action="{{ route('locale') }}">
+                    <select id="locales" name="locale"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onchange="this.form.submit()">
+                        @foreach (config('app.supported_locales') as $locale)
+                            <option value="{{ $locale }}" {{ session('locale') === $locale ? 'selected' : '' }}>
+                                {{ $locale }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
             </div>
         </div>
         <div @click="showBurger = true" class="md:hidden">
@@ -34,11 +45,22 @@
                 </svg>
             </button>
             <div>
+                <form class="max-w-[80px] mx-auto mb-2" method="GET" action="{{ route('locale') }}">
+                    <select id="locales" name="locale"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onchange="this.form.submit()">
+                        @foreach (config('app.supported_locales') as $locale)
+                            <option value="{{ $locale }}" {{ session('locale') === $locale ? 'selected' : '' }}>
+                                {{ $locale }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
                 <ul>
                     @foreach ($categories as $category)
                         <li @click="showBurger = false" class="mb-1 line">
                             <a class="block p-4 text-sm font-semibold text-gray-300 hover:bg-gray-600 hover:text-white rounded"
-                                href="#category-{{$category->id}}">{{$category->__('name')}}</a>
+                                href="#category-{{ $category->id }}">{{ $category->__('name') }}</a>
                         </li>
                     @endforeach
                 </ul>
