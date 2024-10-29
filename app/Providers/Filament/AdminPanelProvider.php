@@ -28,9 +28,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('dashboard')
             ->colors([
                 'danger' => Color::Red,
-                'gray' => Color::CustomGray,
+                'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => Color::CustomBlue,
+                'primary' => Color::Blue,
                 'success' => Color::Green,
                 'warning' => Color::Amber,
             ])
